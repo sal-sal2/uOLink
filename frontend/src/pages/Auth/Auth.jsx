@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Auth.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn, signUp } from "../../actions/AuthAction";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const loading = useSelector((state)=>state.authReducer.loading)
 
 
   const initialState = {
@@ -26,9 +28,9 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignUp) {
-      if (data.password !== data.confirmpass) {
-        setConfirmPass(false)
-      }
+      data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
+    } else {
+      dispatch(logIn(data));
     }
   };
 
@@ -60,6 +62,7 @@ const Auth = () => {
               className="infoInput"
               name="firstname"
               onChange={handleChange}
+              value={data.firstname}
 
             />
             <input
@@ -68,6 +71,7 @@ const Auth = () => {
               className="infoInput"
               name="lastname"
               onChange={handleChange}
+              value={data.lastname}
             />
           </div>
         )}
@@ -80,11 +84,13 @@ const Auth = () => {
             name="username"
             placeholder="Usernames"
             onChange={handleChange}
+            value={data.username}
           />
         </div>
 
         <div>
           <input
+            required
             type="password"
             className="infoInput"
             name="password"
@@ -98,6 +104,8 @@ const Auth = () => {
               className="infoInput"
               name="confirmpass"
               placeholder="Confirm Password"
+              onChange={handleChange}
+              value={data.confirmpass} 
             />
           )}
           
@@ -122,8 +130,8 @@ const Auth = () => {
                 : "Don't have an account Sign up"}
             </span>
         </div>
-        <button className="button infoButton" type="submit">
-          {isSignUp ? "Signup" : "Login"}
+        <button className="button infoButton" type="submit" disabled={loading}>
+          {loading ? "Loading..." : isSignUp ? "Signup" : "Login"}
         </button>
       </form>
     </div>

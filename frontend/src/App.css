@@ -1,23 +1,23 @@
 :root {
-  --yellow: #ffffff;                        /* white — replaces yellow, used for light accents */
-  --orange: #8B1A2B;                        /* uOttawa garnet — replaces orange for hover states */
-  --black: #1C1F2E;                         /* dark charcoal — matches uOttawa body text */
-  --gray: rgba(28, 31, 46, 0.65);           /* charcoal gray — matches uOttawa secondary text */
-  --profileShadow: 0px 4px 17px 2px rgba(139, 26, 43, 0.22); /* garnet-tinted shadow */
-  --hrColor: rgba(139, 26, 43, 0.15);       /* subtle garnet divider */
-  --cardColor: rgba(255, 255, 255, 0.82);   /* white card — matches uOttawa's clean white sections */
-  --buttonBg: linear-gradient(98.63deg, #8B1A2B 0%, #6B0013 100%); /* garnet — matches crimson CTA */
-  --inputColor: rgba(139, 26, 43, 0.06);    /* faint garnet tint for inputs */
+  --yellow: #ffffff;                        
+  --orange: #8B1A2B;                        
+  --black: #1C1F2E;                         
+  --gray: rgba(28, 31, 46, 0.65);           
+  --profileShadow: 0px 4px 17px 2px rgba(139, 26, 43, 0.22); 
+  --hrColor: rgba(139, 26, 43, 0.15);       
+  --cardColor: rgba(255, 255, 255, 0.82);   
+  --buttonBg: linear-gradient(98.63deg, #8B1A2B 0%, #6B0013 100%); 
+  --inputColor: rgba(139, 26, 43, 0.06);    
   --photo: #4CB256;
   --video: #4A4EB7;
   --location: #EF5757;
-  --schedule: #8B1A2B;                      /* garnet — fixed typo from --shedule, no gold */
+  --schedule: #8B1A2B;                      
 }
 
 .App{
   overflow: hidden;
   color: var(--black);
-  background: #ffffff;                      /* pure white — matches uOttawa's white page background */
+  background: #ffffff;                      
   padding: 1rem 1rem;
 }
 
@@ -26,7 +26,7 @@
   width: 22rem;
   height: 14rem;
   border-radius: 50%;
-  background: rgba(139, 26, 43, 0.12);      /* soft garnet glow — replaces blue blob */
+  background: rgba(139, 26, 43, 0.12);      
   filter: blur(72px)
 }
 
@@ -43,11 +43,15 @@
 
 .button:hover{
   cursor: pointer;
-  color: var(--orange);                     /* garnet text on hover */
+  color: var(--orange);                     
   background: transparent;
-  border: 2px solid var(--orange);          /* garnet border — matches uOttawa's outlined "Discover" button */
+  border: 2px solid var(--orange);          
 }
 
+.button:disabled{
+  background: silver;
+  pointer-events: none;
+}
 ::-webkit-scrollbar{
   display: none;
 }

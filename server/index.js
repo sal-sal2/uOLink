@@ -1,12 +1,14 @@
 import 'dotenv/config'
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import AuthRoute from "./Routes/AuthRoute.js"
 import UserRoute from "./Routes/UserRoute.js"
 import PostRoute from "./Routes/PostRoute.js"
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
