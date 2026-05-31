@@ -11,6 +11,10 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
+// Serving images
+app.use(express.static('public'))
+app.use('/images', express.static("images"))
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
