@@ -21,12 +21,13 @@ const InfoCard = () => {
   }
 
   useEffect(()=> {
+    if(!profileUserId) return
     const fetchProfileUser = async()=> {
       if(profileUserId === user._id) {
         setProfileUser(user)
       } else {
-        const profileUser = await UserApi.getUser(profileUserId)
-        setProfileUser(profileUser)
+        const { data } = await UserApi.getUser(profileUserId)
+        setProfileUser(data)
       }
     }
     fetchProfileUser();
@@ -57,21 +58,17 @@ const InfoCard = () => {
         <span>
           <b>Status </b>
         </span>
-        <span>{profileUser.relationship}</span>
+        <span>{profileUser.relationship || "—"}</span>
       </div>
 
       <div className="info">
-        <span>
-          <b>{profileUser.livesin}</b>
-        </span>
-        <span>p</span>
+        <span><b>Lives in </b></span>
+        <span>{profileUser.livesin || "—"}</span>
       </div>
 
       <div className="info">
-        <span>
-          <b>Works at </b>
-        </span>
-        <span>inst</span>
+        <span><b>Works at </b></span>
+        <span>{profileUser.worksAt || "—"}</span>
       </div>
 
       <button className="button logout-button" onClick={handleLogOut}>Logout</button>
