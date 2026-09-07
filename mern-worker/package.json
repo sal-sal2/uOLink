@@ -1,0 +1,17 @@
+{
+  "name": "mern-worker",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "hono": "^4.13.7",
+    "mongodb": "^7.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "wrangler": "^4.129.0"
+  }
+}
