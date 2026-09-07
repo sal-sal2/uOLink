@@ -1,6 +1,15 @@
-import express from 'express'
+import express from "express";
+
 const router = express.Router();
-import multer from 'multer'
+
+router.post("/", (req, res) => {
+  return res.status(501).json({
+    message: "Image uploads are temporarily unavailable.",
+  });
+});
+
+export default router;
+/* Logic for upload previously when on disk, later will be moved to R2 or S3
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -21,3 +30,5 @@ router.post("/", upload.single("file"), (req, res) => {
   });
 
 export default router;
+
+*/

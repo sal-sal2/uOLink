@@ -1,2 +1,7 @@
 .env
 *.env
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+/server/.wrangler

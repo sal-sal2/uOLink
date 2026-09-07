@@ -1,22 +1,36 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
-dotenv.config();
-const secret = process.env.JWT_KEY;
-const authMiddleWare = async(req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(" ")[1];
-        console.log(token);
-        if (token) {
-            const decoded = jwt.verify(token, secret);
-            console.log(decoded)
-            req.body._id = decoded?.id;
+const authMiddleWare = async (req, res, next) => {
+  try {
+    const authorization = req.headers.authorization;
 
-        }
-        next();
-    } catch (error) {
-        console.log(error)
+    if (!authorization) {
+      return res.status(401).json({
+        message: "Authorization token required",
+      });
     }
-}
+
+    const token = authorization.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        message: "Invalid authorization header",
+      });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_KEY
+    );
+
+    req.body._id = decoded.id;
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      message: "Invalid or expired token",
+    });
+  }
+};
 
 export default authMiddleWare;
